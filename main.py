@@ -14,12 +14,16 @@ mysql.init_app(app)
 
 @app.route("/")
 def index():
-    """sql =""
+    sql ="Select * from clientes;"
     conn = mysql.connect()
     cursor = conn.cursor() 
     cursor.execute(sql)
-    conn.commit()"""
-    return render_template("clientes/index.html")
+
+    clientes = cursor.fetchall()
+    print(clientes)
+
+    conn.commit()
+    return render_template("clientes/index.html", clientes=clientes )
 
 @app.route('/create')
 def create():
