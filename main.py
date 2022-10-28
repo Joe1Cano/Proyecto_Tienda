@@ -17,16 +17,17 @@ mysql.init_app(app)
 @app.route("/")
 def index():
 
-    sql ="INSERT into clientes (nombre, apellido, telefono, correo) VALUES ('Joel', 'Cano', '1232141561',  '123@hotmail.com');"
+    sql =""
 
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(sql)
     conn.commit()
-
-
     return render_template("empleados/index.html")
 
+@app.route('/create')
+def create():
+    return render_template('empleados/create.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
