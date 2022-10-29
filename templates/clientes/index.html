@@ -1,37 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Inicio</title>
-</head>
-<body>
-    <table class="table table-light">
-        <thead class="thead-light">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for cliente in clientes %}
-            <tr>
-                <td>{{cliente[0]}}</td>
-                <td>{{cliente[1]}}</td>
-                <td>{{cliente[2]}}</td>
-                <td>{{cliente[3]}}</td>
-                <td>{{cliente[4]}}</td>
-                <td> <a href="/edit/{{cliente[0]}}"> Editar</a> ||
-                    <a href="/destroy/{{cliente[0]}}"> Borrar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</body>
-</html>
+{% include 'header.html' %}
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Telefono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{cliente[0]}}</td>
+            <td>{{cliente[1]}}</td>
+            <td>{{cliente[2]}}</td>
+            <td>{{cliente[3]}}</td>
+            <td>{{cliente[4]}}</td>
+            <td> <a href="/edit/{{cliente[0]}}"> Editar</a> ||
+                <a href="/destroy/{{cliente[0]}}"> Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include 'footer.html' %}
