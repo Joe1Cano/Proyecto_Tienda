@@ -26,7 +26,9 @@
                 <td>{{cliente[2]}}</td>
                 <td>{{cliente[3]}}</td>
                 <td>{{cliente[4]}}</td>
-                <td> Editar || Borrar</td>
+                <td> Editar ||
+                    <a href="/destroy/{{cliente[0]}}"> Eliminar</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request
+from flask import render_template, request, redirect
 from flaskext.mysql import MySQL
 
 
@@ -11,6 +11,7 @@ app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
 app.config['MYSQL_DATABASE_DB'] = 'tienda'
 mysql.init_app(app)
+
 
 @app.route("/")
 def index():
@@ -24,6 +25,14 @@ def index():
 
     conn.commit()
     return render_template("clientes/index.html", clientes=clientes )
+
+@app.route('/destroy/<int:id>')
+def destroy(id):
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute("DELETE FROM clientes WHERE noClientes = %s",(id))
+    conn.commit()
+    return redirect('/')
 
 @app.route('/create')
 def create():
