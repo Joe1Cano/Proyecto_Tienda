@@ -81,7 +81,7 @@ def storage():
     cursor = conn.cursor() 
     cursor.execute(sql, datos)
     conn.commit()
-    return render_template("clientes/index.html")
+    return redirect('/')
 
 
 if __name__ == '__main__':

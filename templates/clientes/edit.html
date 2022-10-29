@@ -1,32 +1,52 @@
 {% include 'header.html' %}
-
-<header>Formulario para editar</header>
 {% for cliente in clientes %}
 
 <form method="post" action="/update" enctype="multipart/form-data">
-    ID:
-    <input type="txt" name="txtID fake" id="txtID fake" value="{{cliente[0]}}" disabled>
-    <input type="hidden" name="txtID" id="txtID" value="{{cliente[0]}}" >
-    <br>
 
-    Nombre:
-    <input type="text" value="{{cliente[1]}}" name="txtNombre" id="txtNombre">
-    <br>
+    <div class="card">
+        <div class="card-header">
+            Editar Clientes
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del cliente:</h5>
+            <p class="card-text">
 
-    Apellido:
-    <input type="text" value="{{cliente[2]}}" name="txtApellido" id="txtApellido">
-    <br>
+                <div class="form-group">
+                    <label for="txtID fake">ID:</label>
+                    <input id="txtID fake" class="form-control" value="{{cliente[0]}}" type="text" name="txtID fake" disabled>
+                </div>
+                
+                <input type="hidden" name="txtID" id="txtID" value="{{cliente[0]}}" >
+            
+                <div class="form-group">
+                    <label for="txtNombre">Nombre:</label>
+                    <input id="txtNombre" value="{{cliente[1]}}" class="form-control" type="text" name="txtNombre">
+                </div>
+                
+                <div class="form-group">
+                    <label for="txtApellido">Apellido:</label>
+                    <input id="txtApellido" value="{{cliente[2]}}" class="form-control" type="text" name="txtApellido">
+                </div>
 
-    Correo:
-    <input type="text" value="{{cliente[3]}}" name="txtCorreo" id="txtCorreo">
-    <br>
+                <div class="form-group">
+                    <label for="txtCorreo">Correo:</label>
+                    <input id="txtCorreo" value="{{cliente[3]}}" class="form-control" type="text" name="txtCorreo">
+                </div>
 
-    Telefono:
-    <input type="text" value="{{cliente[4]}}" name="txtTelefono" id="txtTelefono">
-    <br>
-    <br>
-
-    <input type="submit" value="Guardar">
+                <div class="form-group">
+                    <label for="txtTelefono">Telefono:</label>
+                    <input id="txtTelefono" value="{{cliente[4]}}" class="form-control" type="text" name="txtTelefono">
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Guardar">
+                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                </div>
+            </p>
+        </div>
+    </div>
+    
 </form>
 {% endfor %}
 

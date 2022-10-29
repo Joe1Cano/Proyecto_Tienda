@@ -1,23 +1,40 @@
 {% include 'header.html' %}
 <form method="post" action="/store" enctype="multipart/form-data">
-    
-    Nombre:
-    <input type="text" name="txtNombre" id="txtNombre">
-    <br>
+    <div class="card">
+        <div class="card-header">
+            Ingresa datos del nuevo cliente
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del cliente</h5>
+            <p class="card-text"> 
 
-    Apellido:
-    <input type="text" name="txtApellido" id="txtApellido">
-    <br>
+                <div class="form-group">
+                    <label for="txtNombre">Nombre:</label>
+                    <input id="txtNombre" class="form-control" type="text" name="txtNombre">
+                </div>
 
-    Correo:
-    <input type="text" name="txtCorreo" id="txtCorreo">
-    <br>
+                <div class="form-group">
+                    <label for="txtApellido">Apellido:</label>
+                    <input id="txtApellido" class="form-control" type="text" name="txtApellido">
+                </div>
 
-    Telefono:
-    <input type="text" name="txtTelefono" id="txtTelefono">
-    <br>
-    <br>
+                <div class="form-group">
+                    <label for="txtCorreo">Correo:</label>
+                    <input id="txtCorreo" class="form-control" type="text" name="txtCorreo">
+                </div>
 
-    <input type="submit" value="Agregar">
+                <div class="form-group">
+                    <label for="txtTelefono">Telefono:</label>
+                    <input id="txtTelefono" class="form-control" type="text" name="txtTelefono">
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <input class ="btn btn-success" type="submit" value="Agregar">
+                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                </div>
+                </p>
+        </div>
+    </div> 
 </form>
 {% include 'footer.html' %}
