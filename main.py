@@ -1,9 +1,10 @@
 from flask import Flask
-from flask import render_template, request, redirect
-from flaskext.mysql import MySQL
+from flask import render_template, request, redirect, flash, url_for
+from flaskext.mysql import MySQL    
 
 
 app= Flask(__name__)
+app.secret_key="Develoteca  "
 
 mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
@@ -73,6 +74,10 @@ def storage():
     _apellido=request.form["txtApellido"]
     _correo=request.form["txtCorreo"]
     _telefono=request.form["txtTelefono"]
+
+    if _nombre=="" or _apellido=="" or _correo =="" or _telefono =="":
+        flash('Tienes que llenar todos los campos')
+        return redirect(url_for("create"))
 
     sql ="INSERT into clientes (nombre, apellido, telefono, correo) VALUES (%s, %s, %s, %s);"
 
