@@ -38,6 +38,35 @@ def destroy(id):
 def create():
     return render_template('clientes/create.html')
 
+@app.route('/update', methods=['POST'])
+def update():
+    _nombre=request.form["txtNombre"]
+    _apellido=request.form["txtApellido"]
+    _correo=request.form["txtCorreo"]
+    _telefono=request.form["txtTelefono"]
+    id=request.form["txtID"]
+
+    sql ="UPDATE clientes set nombre=%s, apellido=%s, telefono=%s, correo=%s WHERE noClienteS=%s;"
+    datos=(_nombre, _apellido, _telefono, _correo, id)
+    
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql, datos)
+    conn.commit()
+    return redirect('/')
+
+@app.route('/edit/<int:id>')
+def edit(id):
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute("SELECT * FROM clientes WHERE noClientes =%s", (id))
+
+    clientes = cursor.fetchall()
+    print(clientes)
+
+    conn.commit()
+    return render_template('clientes/edit.html', clientes=clientes)
+
 @app.route('/store', methods=['POST'])
 def storage():
     _nombre=request.form["txtNombre"]

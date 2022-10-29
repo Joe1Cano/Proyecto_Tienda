@@ -1,0 +1,29 @@
+<header>Formulario para editar</header>
+{% for cliente in clientes %}
+
+<form method="post" action="/update" enctype="multipart/form-data">
+    ID:
+    <input type="txt" name="txtID fake" id="txtID fake" value="{{cliente[0]}}" disabled>
+    <input type="hidden" name="txtID" id="txtID" value="{{cliente[0]}}" >
+    <br>
+
+    Nombre:
+    <input type="text" value="{{cliente[1]}}" name="txtNombre" id="txtNombre">
+    <br>
+
+    Apellido:
+    <input type="text" value="{{cliente[2]}}" name="txtApellido" id="txtApellido">
+    <br>
+
+    Correo:
+    <input type="text" value="{{cliente[3]}}" name="txtCorreo" id="txtCorreo">
+    <br>
+
+    Telefono:
+    <input type="text" value="{{cliente[4]}}" name="txtTelefono" id="txtTelefono">
+    <br>
+    <br>
+
+    <input type="submit" value="Guardar">
+</form>
+{% endfor %}
