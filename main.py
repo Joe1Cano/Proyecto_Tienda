@@ -13,9 +13,26 @@ app.config['MYSQL_DATABASE_PASSWORD'] = ''
 app.config['MYSQL_DATABASE_DB'] = 'tienda'
 mysql.init_app(app)
 
-
 @app.route("/")
 def index():
+    return render_template("main/index.html")
+
+@app.route("/productos")
+def indexP():
+    sql ="Select * from productos;"
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql)
+
+    productos = cursor.fetchall()
+    print(productos)
+
+    conn.commit()
+    return render_template("productos/index.html", productos=productos )
+
+
+@app.route("/clientes")
+def indexC():
     sql ="Select * from clientes;"
     conn = mysql.connect()
     cursor = conn.cursor() 
