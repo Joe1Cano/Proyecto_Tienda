@@ -79,7 +79,7 @@ def storage():
         flash('Tienes que llenar todos los campos')
         return redirect(url_for("create"))
 
-    sql ="INSERT into clientes (nombre, apellido, telefono, correo) VALUES (%s, %s, %s, %s);"
+    sql ="call altaClientes(%s, %s, %s, %s);"
 
     datos=(_nombre,_apellido,_telefono,_correo)
     conn = mysql.connect()
