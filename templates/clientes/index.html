@@ -22,8 +22,8 @@
             <td>{{cliente[2]}}</td>
             <td>{{cliente[3]}}</td>
             <td>{{cliente[4]}}</td>
-            <td> <a href="/edit/{{cliente[0]}}" class="btn btn-info"> Editar</a> ||
-                <a onclick="return confirm('Seguro que quieres borrar?')" href="/destroy/{{cliente[0]}}" class="btn btn-danger"> Borrar</a>
+            <td> <a href="/clientes/edit/{{cliente[0]}}" class="btn btn-info"> Editar</a> ||
+                <a onclick="return confirm('Seguro que quieres borrar?')" href="/clientes/destroy/{{cliente[0]}}" class="btn btn-danger"> Borrar</a>
             </td>
         </tr>
         {% endfor %}

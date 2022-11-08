@@ -1,7 +1,7 @@
 {% include 'header.html' %}
 {% for cliente in clientes %}
 
-<form method="post" action="/update" enctype="multipart/form-data">
+<form method="post" action="/clientes/update" enctype="multipart/form-data">
 
     <div class="card">
         <div class="card-header">
@@ -41,7 +41,7 @@
                 
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Guardar">
-                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                    <a href="/clientes" class="btn btn-primary">Regresar</a>
                 </div>
             </p>
         </div>

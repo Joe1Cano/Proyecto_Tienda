@@ -44,19 +44,19 @@ def indexC():
     conn.commit()
     return render_template("clientes/index.html", clientes=clientes )
 
-@app.route('/destroy/<int:id>')
+@app.route('/clientes/destroy/<int:id>')
 def destroy(id):
     conn = mysql.connect()
     cursor = conn.cursor() 
     cursor.execute("DELETE FROM clientes WHERE noClientes = %s",(id))
     conn.commit()
-    return redirect('/')
+    return redirect('/clientes')
 
-@app.route('/create')
+@app.route('/clientes/create')
 def create():
     return render_template('clientes/create.html')
 
-@app.route('/update', methods=['POST'])
+@app.route('/clientes/update', methods=['POST'])
 def update():
     _nombre=request.form["txtNombre"]
     _apellido=request.form["txtApellido"]
@@ -71,9 +71,9 @@ def update():
     cursor = conn.cursor() 
     cursor.execute(sql, datos)
     conn.commit()
-    return redirect('/')
+    return redirect('/clientes')
 
-@app.route('/edit/<int:id>')
+@app.route('/clientes/edit/<int:id>')
 def edit(id):
     conn = mysql.connect()
     cursor = conn.cursor() 
@@ -85,7 +85,7 @@ def edit(id):
     conn.commit()
     return render_template('clientes/edit.html', clientes=clientes)
 
-@app.route('/store', methods=['POST'])
+@app.route('/clientes/store', methods=['POST'])
 def storage():
     _nombre=request.form["txtNombre"]
     _apellido=request.form["txtApellido"]
@@ -98,12 +98,12 @@ def storage():
 
     sql ="call altaClientes(%s, %s, %s, %s);"
 
-    datos=(_nombre,_apellido,_telefono,_correo)
+    datos=(_nombre,_apellido,_correo,_telefono)
     conn = mysql.connect()
     cursor = conn.cursor() 
     cursor.execute(sql, datos)
     conn.commit()
-    return redirect('/')
+    return redirect('/clientes')
 
 
 if __name__ == '__main__':

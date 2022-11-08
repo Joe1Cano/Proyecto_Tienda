@@ -12,7 +12,7 @@
 
 {% endwith %}
 
-<form method="post" action="/store" enctype="multipart/form-data">
+<form method="post" action="/clientes/store" enctype="multipart/form-data">
     <div class="card">
         <div class="card-header">
             Ingresa datos del nuevo cliente
@@ -44,7 +44,7 @@
 
                 <div class="form-group">
                     <input class ="btn btn-success" type="submit" value="Agregar">
-                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                    <a href="/clientes" class="btn btn-primary">Regresar</a>
                 </div>
                 </p>
         </div>
