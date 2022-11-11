@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+{% for producto in productos  %}
+
+<form method="post" action="/productos/update" enctype="multipart/form-data">
+
+    <div class="card">
+        <div class="card-header">
+            Editar Procutos
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del producto:</h5>
+            <p class="card-text">
+
+                <div class="form-group">
+                    <label for="txtID fake">ID:</label>
+                    <input id="txtID fake" class="form-control" value="{{producto[0]}}" type="text" name="txtID fake" disabled>
+                </div>
+                
+                <input type="hidden" name="txtID" id="txtID" value="{{producto[0]}}" >
+            
+                <div class="form-group">
+                    <label for="txtNombre">Nombre:</label>
+                    <input id="txtNombre" value="{{producto[1]}}" class="form-control" type="text" name="txtNombre">
+                </div>
+                
+                <div class="form-group">
+                    <label for="txtPrecio">Precio:</label>
+                    <input id="txtPrecio" value="{{producto[2]}}" class="form-control" type="number" name="txtPrecio">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtCantidad">Cantidad:</label>
+                    <input id="txtCantidad" value="{{producto[3]}}" class="form-control" type="number" name="txtCantidad">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtProveedor">Numero de proveedor:</label>
+                    <input id="txtProveedor" value="{{producto[4]}}" class="form-control" type="number" name="txtProveedor">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtCosto">Costo:</label>
+                    <input id="txtCosto" value="{{producto[5]}}" class="form-control" type="number" name="txtCosto">
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Guardar">
+                    <a href="/productos" class="btn btn-primary">Regresar</a>
+                </div>
+            </p>
+        </div>
+    </div>
+    
+</form>
+{% endfor %}
+
+{% include 'footer.html' %}

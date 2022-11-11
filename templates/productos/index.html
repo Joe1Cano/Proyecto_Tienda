@@ -1,6 +1,6 @@
 {% include 'header.html' %}
 <br>
-<a class="btn btn-success">
+<a href="productos/create" class="btn btn-success">
     Ingresar productos
 </a>
 <table class="table table-light">
@@ -12,9 +12,23 @@
             <th>Cantidad</th>
             <th>noProveedor</th>
             <th>Costo</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{producto[0]}}</td>
+            <td>{{producto[1]}}</td>
+            <td>{{producto[2]}}</td>
+            <td>{{producto[3]}}</td>
+            <td>{{producto[4]}}</td>
+            <td>{{producto[5]}}</td>
+            <td> <a href="/productos/edit/{{producto[0]}}" class="btn btn-info"> Editar</a> ||
+            <a onclick="return confirm('Seguro que quieres borrar?')" href="/productos/destroy/{{producto[0]}}" class="btn btn-danger"> Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 
