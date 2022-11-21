@@ -1,0 +1,29 @@
+{% include 'header.html' %}
+<br>
+<a href="movimientos/create" class="btn btn-success">
+    Ingresar movimientos
+</a>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>ID Productos</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Cantidad</th>
+        </tr>
+    </thead>
+    <tbody> 
+        {% for movimiento in movimientos %}
+        <tr>
+            <td>{{movimiento[0]}}</td>
+            <td>{{movimiento[1]}}</td>
+            <td>{{movimiento[2]}}</td>
+            <td>{{movimiento[3]}}</td>
+            <td>{{movimiento[4]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include 'footer.html' %}

@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+    <div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+    </div>
+{% endif %}
+
+{% endwith %}
+
+<form method="post" action="/movimientos/store" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-header">
+            Ingresa datos del movimiento
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del movimiento:</h5>
+            <p class="card-text"> 
+
+                <div class="form-group">
+                    <label for="txtIDProducto">ID del producto:</label>
+                    <input id="txtIDProducto" class="form-control" type="text" name="txtIDProducto">
+                </div>
+
+                <div class="form-group">
+                    <label for="Tipo">Tipo:</label>
+                        <select id="Tipo" class="form-control" name="Tipo">
+                            <option value="entrada">entrada</option>
+                            <option value="salida">salida</option>
+                        </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="txtFecha">Fecha:</label>
+                    <input id="txtFecha" class="form-control" type="date" name="txtFecha">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtCantidad">Cantidad:</label>
+                    <input id="txtCantidad" class="form-control" type="number" name="txtCantidad">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <input class ="btn btn-success" type="submit" value="Agregar">
+                    <a href="/ventas" class="btn btn-primary">Regresar</a>
+                </div>
+                </p>
+        </div>
+    </div> 
+</form>
+{% include 'footer.html' %}

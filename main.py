@@ -30,6 +30,80 @@ def indexP():
     conn.commit()
     return render_template("productos/index.html", productos=productos )
 
+@app.route("/movimientos")
+def indexM():
+    sql ="Select * from movimientos;"
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql)
+
+    movimientos = cursor.fetchall()
+    print(movimientos)
+
+    conn.commit()
+    return render_template("movimientos/index.html", movimientos=movimientos )
+
+@app.route("/ventas")
+def indexV():
+    sql ="Select * from ventas;"
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql)
+
+    ventas = cursor.fetchall()
+    print(ventas)
+
+    conn.commit()
+    return render_template("ventas/index.html", ventas=ventas )
+
+@app.route('/movimientos/create')
+def createM():
+    return render_template('movimientos/create.html')
+
+@app.route('/movimientos/store', methods=['POST'])
+def storageM():
+    _Idproducto = request.form["txtIDProducto"]
+    _Tipo = request.form["Tipo"]
+    _Fecha = request.form["txtFecha"]
+    _Cantidad = request.form["txtCantidad"]
+
+    if _Idproducto=="" or _Tipo =="" or _Fecha=="" or _Cantidad=="":
+        flash('Tienes que llenar todos los campos')
+        return redirect(url_for("create"))
+
+    sql ="INSERT INTO movimientos (noProductos, tipo, fecha, cantidad) VALUES (%s,%s,%s,%s);"
+
+    datos=(_Idproducto,_Tipo,_Fecha,_Cantidad)
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql, datos)
+    conn.commit()
+    return redirect('/movimientos')
+
+@app.route('/ventas/create')
+def createV():
+    return render_template('ventas/create.html')
+
+@app.route('/ventas/store', methods=['POST'])
+def storageV():
+    _Idproducto = request.form["txtIDProducto"]
+    _Fecha = request.form["txtFecha"]
+    _Cantidad = request.form["txtCantidad"]
+    _Precio = request.form["txtPrecio"]
+
+    if _Idproducto=="" or _Fecha=="" or _Cantidad=="" or _Precio=="":
+        flash('Tienes que llenar todos los campos')
+        return redirect(url_for("create"))
+
+    sql ="INSERT INTO ventas (noProductos, fecha, cantidad, precio) VALUES (%s,%s,%s,%s);"
+
+    datos=(_Idproducto,_Fecha,_Cantidad,_Precio)
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql, datos)
+    conn.commit()
+    return redirect('/ventas')
+
 @app.route("/proveedores")
 def indexPr():
     sql ="Select * from proveedores;"
