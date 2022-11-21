@@ -30,6 +30,79 @@ def indexP():
     conn.commit()
     return render_template("productos/index.html", productos=productos )
 
+@app.route("/proveedores")
+def indexPr():
+    sql ="Select * from proveedores;"
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql)
+
+    proveedores = cursor.fetchall()
+    print(proveedores)
+
+    conn.commit()
+    return render_template("proveedores/index.html", proveedores=proveedores )
+
+@app.route('/proveedores/destroy/<int:id>')
+def destroyPr(id):
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute("DELETE FROM proveedores WHERE noProveedores = %s",(id))
+    conn.commit()
+    return redirect('/proveedores')
+
+@app.route('/proveedores/create')
+def createPr():
+    return render_template('proveedores/create.html')
+
+@app.route('/proveedores/store', methods=['POST'])
+def storagePr():
+    _Nombre = request.form["txtNombre"]
+    _Apellido = request.form["txtApellido"]
+    _Correo = request.form["txtCorreo"]
+    _Telefono = request.form["txtTelefono"]
+
+    if _Nombre=="" or _Apellido=="" or _Correo =="" or _Telefono =="":
+        flash('Tienes que llenar todos los campos')
+        return redirect(url_for("create"))
+
+    sql ="INSERT INTO proveedores (nombre, apellido, correo, telefono) VALUES (%s,%s,%s,%s);"
+
+    datos=(_Nombre,_Apellido,_Correo,_Telefono)
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql, datos)
+    conn.commit()
+    return redirect('/proveedores')
+
+@app.route('/proveedores/update', methods=['POST'])
+def updatePr():
+    _nombre=request.form["txtNombre"]
+    _apellido=request.form["txtApellido"]
+    _correo=request.form["txtCorreo"]
+    _telefono=request.form["txtTelefono"]
+    id=request.form["txtID"]
+
+    sql ="UPDATE proveedores set nombre=%s, apellido=%s, telefono=%s, correo=%s WHERE noProveedores=%s;"
+    datos=(_nombre, _apellido, _telefono, _correo, id)
+    
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute(sql, datos)
+    conn.commit()
+    return redirect('/proveedores')
+
+@app.route('/proveedores/edit/<int:id>')
+def editPr(id):
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute("SELECT * FROM proveedores WHERE noProveedores =%s", (id))
+
+    proveedores = cursor.fetchall()
+    print(proveedores)
+
+    conn.commit()
+    return render_template('proveedores/edit.html', proveedores=proveedores)
 
 @app.route("/clientes")
 def indexC():
@@ -63,8 +136,6 @@ def destroyP(id):
 @app.route('/clientes/create')
 def createC():
     return render_template('clientes/create.html')
-
-
 
 @app.route('/clientes/update', methods=['POST'])
 def updateC():
