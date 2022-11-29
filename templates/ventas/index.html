@@ -7,10 +7,10 @@
     <thead class="thead-light">
         <tr>
             <th>ID</th>
-            <th>ID Productos</th>
+            <th>Nombre</th>
+            <th>Precio</th>
             <th>Fecha</th>
             <th>Cantidad</th>
-            <th>Precio</th>
             <th>Subtotal</th>
         </tr>
     </thead>
@@ -19,10 +19,10 @@
         <tr>
             <td>{{venta[0]}}</td>
             <td>{{venta[1]}}</td>
-            <td>{{venta[2]}}</td>
+            <td>$ {{venta[2]}}</td>
             <td>{{venta[3]}}</td>
             <td>{{venta[4]}}</td>
-            <td>{{venta[5]}}</td>
+            <td>$ {{venta[5]}}</td>
         </tr>
         {% endfor %}
     </tbody>

@@ -6,21 +6,21 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
-            <th>ID</th>
-            <th>ID Productos</th>
-            <th>Tipo</th>
-            <th>Fecha</th>
-            <th>Cantidad</th>
+            <th>ID movimiento</th>
+            <th>Fecha movimiento</th>
+            <th>Tipo de movimiento</th>
+            <th>Cantidad del movimiento</th>
+            <th>Nombre producto</th>
         </tr>
     </thead>
     <tbody> 
         {% for movimiento in movimientos %}
         <tr>
-            <td>{{movimiento[0]}}</td>
-            <td>{{movimiento[1]}}</td>
-            <td>{{movimiento[2]}}</td>
             <td>{{movimiento[3]}}</td>
             <td>{{movimiento[4]}}</td>
+            <td>{{movimiento[5]}}</td>
+            <td>{{movimiento[6]}}</td>
+            <td>{{movimiento[1]}}</td>
         </tr>
         {% endfor %}
     </tbody>

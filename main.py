@@ -32,7 +32,7 @@ def indexP():
 
 @app.route("/movimientos")
 def indexM():
-    sql ="Select * from movimientos;"
+    sql ="call mostrarmovProductos();"
     conn = mysql.connect()
     cursor = conn.cursor() 
     cursor.execute(sql)
@@ -45,7 +45,7 @@ def indexM():
 
 @app.route("/ventas")
 def indexV():
-    sql ="Select * from ventas;"
+    sql ="call mostrarvenProductos;"
     conn = mysql.connect()
     cursor = conn.cursor() 
     cursor.execute(sql)
@@ -58,7 +58,15 @@ def indexV():
 
 @app.route('/movimientos/create')
 def createM():
-    return render_template('movimientos/create.html')
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute("SELECT * FROM productos")
+
+    productos = cursor.fetchall()
+    print(productos)
+
+    conn.commit()
+    return render_template('movimientos/create.html', productos=productos)
 
 @app.route('/movimientos/store', methods=['POST'])
 def storageM():
@@ -82,7 +90,15 @@ def storageM():
 
 @app.route('/ventas/create')
 def createV():
-    return render_template('ventas/create.html')
+    conn = mysql.connect()
+    cursor = conn.cursor() 
+    cursor.execute("SELECT * FROM productos")
+
+    productos = cursor.fetchall()
+    print(productos)
+
+    conn.commit()
+    return render_template('ventas/create.html', productos=productos)
 
 @app.route('/ventas/store', methods=['POST'])
 def storageV():

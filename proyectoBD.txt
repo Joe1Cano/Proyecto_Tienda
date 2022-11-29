@@ -77,3 +77,23 @@ IF
     set new.subtotal = new.cantidad * new.precio;
 END if;
 $$
+
+DELIMITER $$
+DROP TRIGGER IF EXISTS `cambioInventario`$$
+CREATE TRIGGER cambioInventario AFTER INSERT ON `movimientos` FOR EACH ROW 
+	IF
+    new.tipo = "entrada" THEN
+    UPDATE productos SET cantidad = cantidad + new.cantidad WHERE noProductos = new.noProductos;
+    ELSEIF
+    new.tipo = "salida" THEN
+    UPDATE productos SET cantidad = cantidad - new.cantidad WHERE noProductos = new.noProductos;
+END if;
+$$
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `mostrarmovProductos`$$
+CREATE PROCEDURE mostrarmovProductos()
+BEGIN
+     SELECT productos.noProductos as "ID del producto", productos.nombre, productos.precio, movimientos.noMovimientos as "ID movimiento", movimientos.fecha as "fecha del movimiento", movimientos.tipo , movimientos.cantidad as "cantidad del movimiento" FROM productos INNER JOIN movimientos on productos.noProductos = movimientos.noProductos;
+END;
+$$
