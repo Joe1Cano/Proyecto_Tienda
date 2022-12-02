@@ -97,3 +97,11 @@ BEGIN
      SELECT productos.noProductos as "ID del producto", productos.nombre, productos.precio, movimientos.noMovimientos as "ID movimiento", movimientos.fecha as "fecha del movimiento", movimientos.tipo , movimientos.cantidad as "cantidad del movimiento" FROM productos INNER JOIN movimientos on productos.noProductos = movimientos.noProductos;
 END;
 $$
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `mostrarvenProductos`$$
+CREATE PROCEDURE mostrarvenProductos()
+BEGIN
+     SELECT ventas.noVentas as "ID Venta", productos.nombre, ventas.precio, ventas.fecha as "fecha del movimiento", ventas.cantidad as "cantidad de la venta", ventas.subtotal FROM productos INNER JOIN ventas on productos.noProductos = ventas.noProductos;
+END;
+$$
